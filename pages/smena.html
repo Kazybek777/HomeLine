@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Смена тарифного плана</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f5f5f5;
+				margin: 0;
+				padding: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+			}
+			.form-container {
+				background-color: white;
+				padding: 30px;
+				border-radius: 8px;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+				width: 100%;
+				max-width: 600px;
+			}
+			h1 {
+				text-align: center;
+				color: #333;
+				margin-bottom: 25px;
+			}
+			.notice {
+				background-color: #fffde7;
+				border-left: 4px solid #ffd600;
+				padding: 15px;
+				margin-bottom: 25px;
+				font-size: 15px;
+			}
+			.notice h3 {
+				margin-top: 0;
+				color: #333;
+			}
+			.notice ul {
+				padding-left: 20px;
+			}
+			.form-group {
+				margin-bottom: 20px;
+			}
+			label {
+				display: block;
+				margin-bottom: 8px;
+				font-weight: bold;
+				color: #555;
+			}
+			input[type='text'],
+			input[type='tel'],
+			select,
+			textarea {
+				width: 100%;
+				padding: 10px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				font-size: 16px;
+				box-sizing: border-box;
+			}
+			textarea {
+				resize: vertical;
+				min-height: 80px;
+			}
+			.submit-btn {
+				width: 100%;
+				padding: 12px;
+				background-color: #4caf50;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				font-size: 16px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+			.submit-btn:hover {
+				background-color: #45a049;
+			}
+			.required-field::after {
+				content: ' *';
+				color: red;
+			}
+			.contacts {
+				margin-top: 20px;
+				font-size: 14px;
+				text-align: center;
+				color: #666;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="form-container">
+			<h1>Заявка на смену тарифного плана</h1>
+
+			<div class="notice">
+				<h3>Уважаемые абоненты!</h3>
+				<p>
+					Смена тарифного плана происходит только с 1 числа календарного месяца.
+					Вам необходимо отправить заявку до 25 числа текущего месяца.
+				</p>
+
+				<p>Необходимо указать:</p>
+				<ul>
+					<li>Ваш текущий тарифный план</li>
+					<li>Желаемый тарифный план</li>
+					<li>Фамилию и Имя, на кого оформлен договор</li>
+					<li>Номер договора</li>
+					<li>Адрес подключения</li>
+				</ul>
+
+				<p><strong>Услуга бесплатная!</strong></p>
+			</div>
+
+			<form action="mailto:smenatp@aknet.kg" method="POST" enctype="text/plain">
+				<div class="form-group">
+					<label for="current_tariff" class="required-field"
+						>Текущий тарифный план</label
+					>
+					<input
+						type="text"
+						id="current_tariff"
+						name="current_tariff"
+						required
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="new_tariff" class="required-field"
+						>Желаемый тарифный план</label
+					>
+					<input type="text" id="new_tariff" name="new_tariff" required />
+				</div>
+
+				<div class="form-group">
+					<label for="full_name" class="required-field"
+						>ФИО (на кого оформлен договор)</label
+					>
+					<input type="text" id="full_name" name="full_name" required />
+				</div>
+
+				<div class="form-group">
+					<label for="contract_number" class="required-field"
+						>Номер договора</label
+					>
+					<input
+						type="text"
+						id="contract_number"
+						name="contract_number"
+						required
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="address" class="required-field">Адрес подключения</label>
+					<textarea id="address" name="address" rows="3" required></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="phone">Контактный телефон</label>
+					<input type="tel" id="phone" name="phone" />
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email (для обратной связи)</label>
+					<input type="email" id="email" name="email" />
+				</div>
+
+				<button type="submit" class="submit-btn">Отправить заявку</button>
+			</form>
+
+			<div class="contacts">
+				<p>
+					Подробнее: 0555 10 20 30 , 0312 10 20 30<br />
+					WhatsApp/Telegram: 0312 10 20 30<br />
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

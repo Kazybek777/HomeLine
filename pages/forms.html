@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Форма заявки</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f5f5f5;
+				margin: 0;
+				padding: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+			}
+			.form-container {
+				background-color: white;
+				padding: 30px;
+				border-radius: 8px;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+				width: 100%;
+				max-width: 500px;
+			}
+			h1 {
+				text-align: center;
+				color: #333;
+				margin-bottom: 25px;
+			}
+			.form-group {
+				margin-bottom: 20px;
+			}
+			label {
+				display: block;
+				margin-bottom: 8px;
+				font-weight: bold;
+				color: #555;
+			}
+			input[type='text'],
+			input[type='tel'],
+			input[type='email'],
+			textarea {
+				width: 100%;
+				padding: 10px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				font-size: 16px;
+				box-sizing: border-box;
+			}
+			textarea {
+				resize: vertical;
+				min-height: 80px;
+			}
+			.captcha-container {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.captcha-code {
+				background-color: #f0f0f0;
+				padding: 8px 15px;
+				border-radius: 4px;
+				font-weight: bold;
+				letter-spacing: 2px;
+				user-select: none;
+			}
+			.submit-btn {
+				width: 100%;
+				padding: 12px;
+				background-color: #4caf50;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				font-size: 16px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+			.submit-btn:hover {
+				background-color: #45a049;
+			}
+			input:required,
+			textarea:required {
+				border-left: 3px solid #ff9800;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="form-container">
+			<h1>Оставить заявку</h1>
+			<form
+				action="mailto:kazy1551@gmail.com"
+				method="POST"
+				enctype="text/plain"
+				onsubmit="return validateForm()"
+			>
+				<div class="form-group">
+					<label for="name">Имя *</label>
+					<input type="text" id="name" name="name" required />
+				</div>
+
+				<div class="form-group">
+					<label for="phone">Телефон *</label>
+					<input type="tel" id="phone" name="phone" required />
+				</div>
+
+				<div class="form-group">
+					<label for="address">Адрес подключения</label>
+					<textarea
+						id="address"
+						name="address"
+						rows="3"
+						placeholder="Для частного сектора укажите ближайшее пересечение улиц"
+					></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" />
+				</div>
+
+				<div class="form-group">
+					<label for="captcha">Код подтверждения *</label>
+					<div class="captcha-container">
+						<input type="text" id="captchaInput" name="captcha" required />
+						<span class="captcha-code" id="captchaCode">A7B9</span>
+					</div>
+				</div>
+
+				<button type="submit" class="submit-btn">Отправить заявку</button>
+			</form>
+		</div>
+
+		<script>
+			function generateCaptcha() {
+				const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+				let captcha = ''
+				for (let i = 0; i < 4; i++) {
+					captcha += chars.charAt(Math.floor(Math.random() * chars.length))
+				}
+				document.getElementById('captchaCode').textContent = captcha
+			}
+
+			function validateForm() {
+				const captchaInput = document.getElementById('captchaInput').value
+				const captchaCode = document.getElementById('captchaCode').textContent
+
+				if (captchaInput !== captchaCode) {
+					alert('Неверный код подтверждения!')
+					generateCaptcha()
+					return false
+				}
+				return true
+			}
+
+			window.onload = generateCaptcha
+		</script>
+	</body>
+</html>
